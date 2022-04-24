@@ -2,21 +2,24 @@
 
 {% block content %}
 <form action="/chirp/edit/{{ chirp[0] }}" method="POST">
-    <br>
-    <h1> Edit : </h1>
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">Title</span>
-        </div>
-        <input type="text" name="title" id="title" class="form-control" aria-describedby="basic-addon1" placeholder="Chirp Title" value="{{ chirp[1] }}" required/>
-      </div>
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-header"><h1>Edit: </h1> </div>
+        <div class="card-body">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Title</span>
+                </div>
+                <input type="text" name="title" id="title" class="form-control" aria-describedby="basic-addon1" placeholder="Chirp Title" value="{{ chirp[1] }}" required/>
+            </div>
 
-    <div class="input-group">
-        <span class="input-group-text">Body</span>
-        <textarea name="body" id="body" class="form-control" aria-label="With textarea">
-            {{ chirp[2] | trim }}
-        </textarea>
-      </div><br>
+            <div class="input-group">
+                <span class="input-group-text">Body</span>
+                <textarea name="body" id="body" class="form-control" aria-label="With textarea">
+                    {{ chirp[2] | trim }}
+                </textarea>
+            </div><br>
+        </div>
+    </div>
 
     <!-- OLD INPUT
     <div class="row mb-3">
