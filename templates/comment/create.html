@@ -1,0 +1,17 @@
+{% extends "comment/form.html" %}
+
+{% block title %}
+Create a Comment
+{% endblock %}
+
+{% block button %}
+    {% if chirp_id %}
+    {% for (chirps_id) in chirp_id %}
+        <div class="row">
+            <div>
+                <button type="button" class="btn btn-outline-success" name="btnCreate" id="btnCreate" onclick="createCMT({{ chirps_id }})">Create</button>
+            </div>
+        </div>
+    {% endfor %}
+    {% endif %}
+{% endblock %}

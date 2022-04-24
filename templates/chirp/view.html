@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if chirp %}
+        {{ chirp[1] }}
+    {% else %}  
+        Flask App
+    {% endif %}
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <br>
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-body">
+                {% if chirp %}
+
+                <h2>{{ chirp[1] }}</h2>
+                <p>
+                    By : {{ chirp[2] }}
+                </p>
+                <p>
+                    {{ chirp[3] }}
+                </p>
+                {% if session and session.get('username') %}   
+                <div>
+                    <a class="btn btn-outline-success" href="{{ url_for('createCmt', chirp_id='{}'.format(chirp[0])) }}"> + Comment </a>
+                </div>
+                {% endif %}
+
+                {% else %}
+                <h3>
+                    Invalid comment
+                </h3>
+                {% endif %}
+        </div>
+    </div>
+</div>
+
+{% if chirp %}
+    {% for (usr_username, cmt_body, cmt_id) in comments %}
+            <div class="card border-secondary mb-3">
+                <div class="card-header"><b>{{ usr_username }}</b></div>
+                <div class="card-body">
+                    <p class="card-text">{{ cmt_body }}
+                            {% if usr_username == session.get('username') %}
+                                <a style="margin:5px;" class="btn btn-outline-danger float-end" onclick="deleteCMT({{ cmt_id }})">Delete</a>
+                            {% endif %}
+                    </p>
+                    
+                </div>
+            </div>
+    {% endfor %}
+
+    {% else %}  
+        No Comments
+{% endif %}
+
+
+<div>
+    <a class="btn btn-outline-primary" href="{{ url_for('index') }}">Back</a>
+</div>
+{% endblock %}

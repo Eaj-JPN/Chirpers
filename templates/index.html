@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<br>
+    {% if chirps %}
+        <div class="row">
+        {% for (chirps_title, users_username, chirps_body, chirps_id) in chirps %}
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-header"><b>{{ chirps_title }}</b></div>
+                <div class="card-body">
+                <h5 class="card-title">{{ users_username }} </h5>
+                <p class="card-text">{{ chirps_body }}<br>
+                    <a style="margin:5px;" class="btn btn-outline-primary float-end" href="{{ url_for('read', chirp_id=chirps_id) }}">View Comments</a>
+                        {% if users_username == session.get('username') %}
+                            <a style="margin:5px;" class="btn btn-outline-danger float-end" onclick="deleteChirp({{ chirps_id }}, {{ '\"%s\"' % chirps_title }})">Delete</a>
+                            <a style="margin:5px;" class="btn btn-outline-warning float-end" href="{{ url_for('edit', chirp_id=chirps_id) }}">Edit</a>
+                        {% endif %}
+                </p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        
+    {% else %}
+        <h1>No Chirps Found</h1><br>
+    {% endif %}
+
+    {% if session and session.get('username') %}
+    <div class="row">
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-body">
+                <a class="btn btn-outline-success" href="{{ url_for('create') }}"> + Chirp </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+{% endblock %}

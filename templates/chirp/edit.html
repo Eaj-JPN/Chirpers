@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/chirp/edit/{{ chirp[0] }}" method="POST">
+    <br>
+    <h1> Edit : </h1>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Title</span>
+        </div>
+        <input type="text" name="title" id="title" class="form-control" aria-describedby="basic-addon1" placeholder="Chirp Title" value="{{ chirp[1] }}" required/>
+      </div>
+
+    <div class="input-group">
+        <span class="input-group-text">Body</span>
+        <textarea name="body" id="body" class="form-control" aria-label="With textarea">
+            {{ chirp[2] | trim }}
+        </textarea>
+      </div><br>
+
+    <!-- OLD INPUT
+    <div class="row mb-3">
+        <label for="title" class="col-2 col-form-label">Title</label>
+        <div class="col-6">
+            <input type="text" name="title" id="title" class="form-control" placeholder="Chirp Title" value="{{ chirp[1] }}" required/>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="offset-2 col-6">
+            <textarea rows="8" cols="50" name="body" id="body">
+                {{ chirp[2] | trim }}
+            </textarea>
+        </div>
+    </div> -->
+
+
+    <div class="row">
+        <div>
+            <button class="btn btn-outline-success" type="submit" name="btnEdit" id="btnEdit">Save</button>
+        </div>
+    </div>
+</form>
+
+<div>
+    <br>
+    <a class="btn btn-outline-primary" href="{{ url_for('index') }}">Back</a>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form>  
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-header"><h1>Create a Comment: </h1> </div>
+        <div class="card-body">
+            <div class="input-group">
+                <span class="input-group-text">Comment : </span>
+                <textarea name="body" id="body" class="form-control" aria-label="With textarea">
+                </textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- OLD INPUT
+    <div class="row mb-3">
+        <label for="title" class="col-2 col-form-label">Comment : </label>
+        <div class="offset-2 col-6">
+            <textarea rows="8" cols="50" name="body" id="body"></textarea>
+        </div>
+    </div> -->
+    {% block button %}{% endblock %}
+</form>
+
+<div>
+    <br>
+    <a class="btn btn-outline-primary" href="{{ url_for('index') }}">Back</a>
+</div>
+{% endblock %}
